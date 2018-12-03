@@ -8,8 +8,9 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="Player.cs" t="Include" />
+          <e p="Shredder.cs" t="Include" />
         </e>
-        <e p="spaceshooter" t="Include">
+        <e p="Z.spaceshooter" t="Include">
           <e p="license.txt" t="Include" />
           <e p="Spritesheet" t="Include">
             <e p="sheet.xml" t="Include" />

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering;
 using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
@@ -10,10 +11,21 @@ public class Player : MonoBehaviour
     [FormerlySerializedAs("speed")] [SerializeField]
     private float _moveSpeed = 10f;
 
+    [FormerlySerializedAs("laserPrefab")] [SerializeField]
+    private GameObject _laserPrefab;
+
+    [FormerlySerializedAs("projectileSpeed")] [SerializeField]
+    private float _projectileSpeed;
+
+    [FormerlySerializedAs("projectileFiringPeriod")] [SerializeField]
+    private float _projectileFiringPeriod;
+
     private float _minX;
     private float _maxX;
     private float _minY;
     private float _maxY;
+
+    private Coroutine _firingCoroutine;
 
     private void Start()
     {
@@ -24,6 +36,7 @@ public class Player : MonoBehaviour
     public void Update()
     {
         Move();
+        Fire();
     }
 
     private void Move()
@@ -44,5 +57,29 @@ public class Player : MonoBehaviour
         _maxX = gameCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x;
         _minY = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y;
         _maxY = gameCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
+    }
+
+    private IEnumerator FireContinuously()
+    {
+        while (true)
+        {
+            var laser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+            laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, _projectileSpeed);
+            Debug.Log(laser.GetComponent<Rigidbody2D>().velocity + "chicken");
+            yield return new WaitForSeconds(_projectileFiringPeriod);   
+        }
+    }
+
+    private void Fire()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            _firingCoroutine = StartCoroutine(FireContinuously());
+        }
+        
+        if (Input.GetButtonUp("Fire1")) 
+        {
+            StopCoroutine(_firingCoroutine);
+        }
     }
 }
