@@ -53,6 +53,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 10
+  _laserPrefab: {fileID: 0}
+  _projectileSpeed: 10
+  _projectileFiringPeriod: 0.05
 --- !u!212 &212780221414899966
 SpriteRenderer:
   m_ObjectHideFlags: 1
