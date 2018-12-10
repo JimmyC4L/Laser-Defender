@@ -8,20 +8,37 @@ public class EnemySpawner : MonoBehaviour
     [FormerlySerializedAs("waveConfigs")] [SerializeField]
     private List<WaveConfig> _waveConfigs;
 
-    private int startingWave = 0;
+    [FormerlySerializedAs("StartingWave")] [SerializeField]
+    private int _startingWave = 0;
 
-    private void Start()
+    [FormerlySerializedAs("loopWave")] [SerializeField]
+    private bool _loopWave = false;
+
+    public IEnumerator Start()
     {
-        var currentWave = _waveConfigs[startingWave];
-        StartCoroutine(SpawnAllEnemiesInWave(currentWave));
+        do
+        {
+            yield return StartCoroutine(SpawnAllWaves());
+        } while (_loopWave);
     }
 
     private IEnumerator SpawnAllEnemiesInWave(WaveConfig waveConfig)
     {
         for (int enemyCount = 0; enemyCount < waveConfig.NumberOfEnemies; enemyCount++)
         {
-            Instantiate(waveConfig.EnemyPrefab, waveConfig.GetWaypoints()[0].transform.position, Quaternion.identity);
+            var newEnemy = Instantiate(waveConfig.EnemyPrefab, waveConfig.GetWaypoints()[0].transform.position,
+                Quaternion.identity);
+            newEnemy.GetComponent<EnemyPath>().SetWaveConfig(waveConfig);
             yield return new WaitForSeconds(waveConfig.TimeBetweenSpawns);
+        }
+    }
+
+    private IEnumerator SpawnAllWaves()
+    {
+        for (int waveCount = _startingWave; waveCount < _waveConfigs.Count; waveCount++)
+        {
+            var currentWave = _waveConfigs[waveCount];
+            yield return StartCoroutine(SpawnAllEnemiesInWave(currentWave));
         }
     }
 }
