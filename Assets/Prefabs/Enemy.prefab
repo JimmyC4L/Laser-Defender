@@ -84,7 +84,7 @@ MonoBehaviour:
   _health: 100
   _shotCounter: 0
   _minTimeBetweenShots: 0.2
-  _maxTimeBetweenShots: 0.2
+  _maxTimeBetweenShots: 2
   _projectile: {fileID: 1840894616907836, guid: 0ce485c55a280c24f87d9096c11cce66,
     type: 2}
   _projectileSpeed: 10
