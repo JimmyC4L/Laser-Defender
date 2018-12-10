@@ -8,10 +8,13 @@ using UnityEngine.Serialization;
 public class Player : MonoBehaviour
 {
     // config params
-    [FormerlySerializedAs("speed")] [SerializeField]
+    [Header("Player Movement")] [FormerlySerializedAs("speed")] [SerializeField]
     private float _moveSpeed = 10f;
 
-    [FormerlySerializedAs("laserPrefab")] [SerializeField]
+    [FormerlySerializedAs("health")] [SerializeField]
+    private int _health;
+
+    [Header("Projectile")] [FormerlySerializedAs("laserPrefab")] [SerializeField]
     private GameObject _laserPrefab;
 
     [FormerlySerializedAs("projectileSpeed")] [SerializeField]
@@ -65,8 +68,7 @@ public class Player : MonoBehaviour
         {
             var laser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
             laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, _projectileSpeed);
-            Debug.Log(laser.GetComponent<Rigidbody2D>().velocity + "chicken");
-            yield return new WaitForSeconds(_projectileFiringPeriod);   
+            yield return new WaitForSeconds(_projectileFiringPeriod);
         }
     }
 
@@ -76,10 +78,35 @@ public class Player : MonoBehaviour
         {
             _firingCoroutine = StartCoroutine(FireContinuously());
         }
-        
-        if (Input.GetButtonUp("Fire1")) 
+
+        if (Input.GetButtonUp("Fire1"))
         {
             StopCoroutine(_firingCoroutine);
+        }
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        var damageDealer = other.GetComponent<DamageDealer>();
+        if (!damageDealer)
+        {
+            return;
+        }
+        ProcessHit(damageDealer);
+    }
+    
+    private void ProcessHit(DamageDealer damageDealer)
+    {
+        _health -= damageDealer.Damage;
+        damageDealer.DestroyOnHit();
+        DestroyOnZeroHealth();
+    }
+
+    private void DestroyOnZeroHealth()
+    {
+        if (_health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }

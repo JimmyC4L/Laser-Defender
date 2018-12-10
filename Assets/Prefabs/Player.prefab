@@ -21,7 +21,8 @@ GameObject:
   - component: {fileID: 4147862068315012}
   - component: {fileID: 212780221414899966}
   - component: {fileID: 114889906757265376}
-  m_Layer: 0
+  - component: {fileID: 60240942128287436}
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,12 +36,56 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1444510078807572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.12, y: -6.4, z: -0.08984375}
+  m_LocalPosition: {x: -1.034, y: -6.283, z: -0.08984375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &60240942128287436
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1444510078807572}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.99, y: 0.75}
+    newSize: {x: 0.99, y: 0.75}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.4791096, y: 0.053503513}
+      - {x: 0.38230234, y: -0.030121326}
+      - {x: 0.113395415, y: 0.12652445}
+      - {x: 0.097180866, y: 0.22307777}
+      - {x: 0.07538765, y: 0.3591032}
+      - {x: -0.06525837, y: 0.37102604}
+      - {x: -0.113206714, y: 0.125}
+      - {x: -0.23718086, y: 0.03320694}
+      - {x: -0.36958638, y: -0.0204525}
+      - {x: -0.48705164, y: 0.051284313}
+      - {x: -0.45923257, y: -0.24102545}
+      - {x: -0.40910333, y: -0.20949078}
+      - {x: -0.13307747, y: -0.28307772}
+      - {x: -0.07910341, y: -0.3670516}
+      - {x: 0.076067396, y: -0.37698412}
+      - {x: 0.1407674, y: -0.2676978}
+      - {x: 0.26294833, y: -0.25320673}
+      - {x: 0.40620184, y: -0.21622849}
+      - {x: 0.45499998, y: -0.265}
+      - {x: 0.45923245, y: -0.2470522}
 --- !u!114 &114889906757265376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -53,7 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 10
-  _laserPrefab: {fileID: 0}
+  _health: 500
+  _laserPrefab: {fileID: 1538738184372086, guid: 6e5bae0983c990745a918f9a60808027,
+    type: 2}
   _projectileSpeed: 10
   _projectileFiringPeriod: 0.05
 --- !u!212 &212780221414899966
