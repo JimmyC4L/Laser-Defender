@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4184438578553690}
   - component: {fileID: 33964999346878484}
   - component: {fileID: 23922513315724982}
+  - component: {fileID: 114407745595619198}
   m_Layer: 0
   m_Name: Backgroud
   m_TagString: Untagged
@@ -83,3 +84,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1375926021751822}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114407745595619198
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1375926021751822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3bdb2704d7fe1f438c86db87a28268d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _backgroundScrollSpeed: 0.05

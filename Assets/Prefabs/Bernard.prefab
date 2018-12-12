@@ -88,6 +88,10 @@ MonoBehaviour:
   _projectile: {fileID: 1840894616907836, guid: 0ce485c55a280c24f87d9096c11cce66,
     type: 2}
   _projectileSpeed: 10
+  _deathVfx: {fileID: 1982647540225200, guid: d18d63a75e2036144b2196e21281e7a1, type: 2}
+  _deathVfxDuration: 1
+  _deathSfx: {fileID: 8300000, guid: 41013777e2b4ff1469822e223b97010f, type: 3}
+  _deathSfxVolume: 0.705
 --- !u!212 &212386181505825946
 SpriteRenderer:
   m_ObjectHideFlags: 1

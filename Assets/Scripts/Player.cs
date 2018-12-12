@@ -22,6 +22,21 @@ public class Player : MonoBehaviour
 
     [FormerlySerializedAs("projectileFiringPeriod")] [SerializeField]
     private float _projectileFiringPeriod;
+    
+    [Header("Sound")]
+    [FormerlySerializedAs("deathSFX")] [SerializeField]
+    private AudioClip _deathSfx;
+    
+    [FormerlySerializedAs("deathSfxVolume")] [SerializeField]
+    [Range(0,1)]
+    private float _deathSfxVolume = 0.7f;
+    
+    [FormerlySerializedAs("deathSFX")] [SerializeField]
+    private AudioClip _shootSfx;
+    
+    [FormerlySerializedAs("deathSfxVolume")] [SerializeField]
+    [Range(0,1)]
+    private float _shootSfxVolume = 0.25f;
 
     private float _minX;
     private float _maxX;
@@ -67,6 +82,7 @@ public class Player : MonoBehaviour
         while (true)
         {
             var laser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+            AudioSource.PlayClipAtPoint(_shootSfx, Camera.main.transform.position, _shootSfxVolume);
             laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, _projectileSpeed);
             yield return new WaitForSeconds(_projectileFiringPeriod);
         }
@@ -106,6 +122,8 @@ public class Player : MonoBehaviour
     {
         if (_health <= 0)
         {
+            if (Camera.main != null)
+                AudioSource.PlayClipAtPoint(_deathSfx, Camera.main.transform.position, _deathSfxVolume);
             Destroy(gameObject);
         }
     }

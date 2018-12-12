@@ -102,7 +102,11 @@ MonoBehaviour:
   _laserPrefab: {fileID: 1538738184372086, guid: 6e5bae0983c990745a918f9a60808027,
     type: 2}
   _projectileSpeed: 10
-  _projectileFiringPeriod: 0.05
+  _projectileFiringPeriod: 0.1
+  _deathSfx: {fileID: 8300000, guid: 41013777e2b4ff1469822e223b97010f, type: 3}
+  _deathSfxVolume: 0.7
+  _shootSfx: {fileID: 8300000, guid: c000f1046eedc074ab294ac83cfe8bb2, type: 3}
+  _shootSfxVolume: 0.098
 --- !u!212 &212780221414899966
 SpriteRenderer:
   m_ObjectHideFlags: 1
